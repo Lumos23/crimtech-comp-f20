@@ -19,7 +19,83 @@ let std_quotes = ["Patience you must have, my young padawan.",
 "Difficult to see. Always in motion is the future."
 ];
 
+// Execute a function when the user releases a key on the keyboard
+
 function respond() {
     // Your Code Here
-    console.log("Hello World!");
+    //console.log("Hello World!");
+    var input = document.getElementById("textbox").value;
+    var old_img = document.getElementById("pic_yoda");
+    var old_text = document.getElementById("quote");
+    console.log(input); // print value of the textbox
+
+    var isbaby = false;
+    var type;
+
+    var allImages = ["img/cute-std.jpg", "img/cute-force.jpg", "img/cute-dark.jpg", "img/regular-dark.jpg", "img/regular-force.jpg", "img/regular-std.jpg"];
+    var img;
+
+    if (input.includes("cute") || input.includes("baby")) {
+      isbaby = true;
+      if (input.includes("force")){
+        if (input.includes("dark")){
+          img = 2;
+        }
+        else {
+          img = 1;
+          //console.log("force");
+        }
+      }
+      else{
+        img = Math.floor(Math.random() * 3);
+        //console.log(allImages[img])
+     }
+  }
+  // if not cute yoda
+  else{
+    if (input.includes("force")){
+      if (input.includes("dark")){
+        img = 3;
+        type = "dark";
+      }
+      else {
+        img = 4;
+        type = "force";
+      }
+    }
+    else{
+      img = Math.floor(Math.random() * 3) + 3;
+      type = "std"
+      //console.log(allImages[img])
+   }
+  }
+
+  old_img.setAttribute("src", allImages[img]);
+  // use innerHTML to change content of an HTML element
+  old_text.innerHTML = getQuote(isbaby, type);
+  // input = '' does not clear the textbox [why?]
+  document.getElementById("textbox").value = '';
+
+}
+
+
+function getQuote(isbaby, type){
+  var quote;
+  m = "m";
+  if (isbaby){
+    quote = "h" + m.repeat((Math.random()*30)+1);
+  }
+  else {
+    var quoteNum = Math.floor(Math.random()*5);
+    if (type === 'dark'){
+      quote = dark_quotes[quoteNum];
+    }
+    else if (type === "force"){
+      quote = dark_quotes[quoteNum];
+    }
+    else {
+      quote = std_quotes[quoteNum];
+    }
+  }
+  return quote;
 }

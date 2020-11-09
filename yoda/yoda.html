@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <title> Yoda Chat </title>
+        <script src = "response_handler.js"></script>
+        <!-- //link to js source code -->
+        <link rel='shortcut icon' type='image/png' href='img/favicon.ico'>
     </head>
     <body>
-
+      <center>
+          <img id = "pic_yoda" src="img/cute-force.jpg" alt="Cute force picture" height="500" width="900" >
+          <p id="quote">To yoda chat I welcome you. Yes, hmmmmmm.</p>
+          <input id="textbox" size=50>
+          <br>
+          <button id="respond_button" onclick="respond()">Respond</button>
+      </center>
+    <script>
+      var input_box = document.getElementById("textbox");
+      input_box.addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+              // Cancel the default action, if needed
+              event.preventDefault();
+              // Trigger the button element with a click
+              document.getElementById("respond_button").click();
+          }
+      });
+    </script>
     </body>
 </html>
